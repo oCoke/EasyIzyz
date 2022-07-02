@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EasyIzyz - 方便快速的查找志愿服务</title>
+    <link
+      rel="stylesheet"
+      href="https://npm.elemecdn.com/mdui@1.0.2/dist/css/mdui.min.css"
+    />
+    <style>
+      html,
+      body {
+        max-width: 100%;
+      }
+      .s_i {
+        width: 100%;
+      }
+      .more .mdui-checkbox {
+        margin-right: 25px;
+      }
+      body {
+        width: 100%;
+        max-width: 650px;
+        margin: auto;
+      }
+      .more {
+        text-align: center;
+      }
+      .input {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .input div {
+        width: 48%;
+      }
+      .input div.a {
+        margin-right: 2%;
+      }
+      .getbtn {
+        margin: auto;
+        margin-top: 20px;
+        display: flex;
+      }
+      .pwd {
+        margin-top: 20px;
+      }
+      .card {
+        margin: 30px 10px;
+        overflow: visible;
+      }
+      .card .mdui-select-position-bottom {
+        width: 100%;
+      }
+      footer {
+        padding: 10px 20px;
+        opacity: 0.65;
+      }
+    </style>
+  </head>
+  <body
+    class="mdui-theme-accent-red mdui-theme-primary-blue mdui-appbar-with-toolbar"
+  >
+    <div
+      class="mdui-appbar mdui-shadow-0 mdui-appbar-fixed mdui-text-color-white"
+    >
+      <div class="mdui-toolbar mdui-color-theme">
+        <span
+          class="mdui-typo-title mdui-text-color-white"
+          style="margin-left: 20px"
+          >EasyIzyz</span
+        >
+        <div class="mdui-toolbar-spacer"></div>
+      </div>
+    </div>
+    <div class="mdui-card card">
+      <div class="mdui-card-primary">
+        <div class="mdui-card-primary-title">EasyIzyz</div>
+        <div class="mdui-card-primary-subtitle">
+          方便快速的查找志愿服务。<br />
+          此工具可以帮助你快速找到适合你的志愿服务。
+        </div>
+      </div>
+      <div class="mdui-card-content">
+        <div class="input">
+          <div class="mdui-textfield a">
+            <label class="mdui-textfield-label">查询页数</label>
+            <input
+              class="mdui-textfield-input s_i"
+              type="number"
+              id="length"
+              value="10"
+            />
+          </div>
+          <!-- <div class="s_i" style="margin-top: 9px;">
+            <label class="mdui-textfield-label">查询服务器</label>
+            <select class="mdui-select s_i" mdui-select="{position:'bottom'}" style="width: 100%!important;">
+                <option value="1">i 志愿</option>
+              </select>
+          </div> -->
+          <div class="mdui-textfield a">
+            <label class="mdui-textfield-label">查询城市</label>
+            <input
+              class="mdui-textfield-input s_i"
+              type="string"
+              id="searchCity"
+              value="广州市"
+            />
+          </div>
+        </div>
+        <div class="input">
+          <div class="mdui-textfield a">
+            <label class="mdui-textfield-label">查询区域（以空格分隔）</label>
+            <input
+              class="mdui-textfield-input s_i"
+              type="string"
+              id="searchArea"
+              value="越秀区 天河区 海珠区"
+            />
+          </div>
+          <!-- <div class="s_i" style="margin-top: 9px;">
+              <label class="mdui-textfield-label">查询服务器</label>
+              <select class="mdui-select s_i" mdui-select="{position:'bottom'}" style="width: 100%!important;">
+                  <option value="1">i 志愿</option>
+                </select>
+            </div> -->
+          <div class="mdui-textfield a">
+            <label class="mdui-textfield-label">屏蔽关键词（以空格分隔）</label>
+            <input
+              class="mdui-textfield-input s_i"
+              type="string"
+              id="banWord"
+              value="师生 线下 请勿报名 模板 专场 学校 校服 校园 自行报名"
+            />
+          </div>
+        </div>
+        <div class="more">
+          <label class="mdui-checkbox">
+            <input type="checkbox" id="type0" checked="true" />
+            <i class="mdui-checkbox-icon"></i>
+            青少年服务
+          </label>
+          <label class="mdui-checkbox">
+            <input type="checkbox" id="type1" checked="true" />
+            <i class="mdui-checkbox-icon"></i>
+            文明实践
+          </label>
+          <label class="mdui-checkbox">
+            <input type="checkbox" id="type2" checked="true" />
+            <i class="mdui-checkbox-icon"></i>
+            公共文明
+          </label>
+          <label class="mdui-checkbox">
+            <input type="checkbox" id="type3" />
+            <i class="mdui-checkbox-icon"></i>
+            环境防护
+          </label>
+          <label class="mdui-checkbox">
+            <input type="checkbox" id="type4" />
+            <i class="mdui-checkbox-icon"></i>
+            康乐文化
+          </label>
+          <label class="mdui-checkbox">
+            <input type="checkbox" id="type5" />
+            <i class="mdui-checkbox-icon"></i>
+            便民服务
+          </label>
+          <label class="mdui-checkbox">
+            <input type="checkbox" id="type6" />
+            <i class="mdui-checkbox-icon"></i>
+            志愿防疫
+          </label>
+        </div>
+        <button
+          onclick="loadData();"
+          class="getbtn mdui-btn mdui-ripple mdui-color-theme-accent"
+        >
+          查询信息
+        </button>
+
+        <div
+          style="margin-top: 20px; text-align: center; display: none"
+          class="mdui-typo"
+          id="loading"
+        >
+          <div class="mdui-spinner mdui-spinner-colorful"></div>
+          <h5 style="margin-top: 5px" id="loading-text"></h5>
+        </div>
+      </div>
+    </div>
+    <div class="card mdui-card">
+      <div class="mdui-card-primary">
+        <div class="mdui-card-primary-title">信息列表</div>
+        <div class="mdui-card-primary-subtitle"></div>
+      </div>
+      <div class="mdui-card-content">
+        <ul class="mdui-list" id="data-list"></ul>
+      </div>
+    </div>
+    <!-- <div class="google-ad mdui-card card">
+      <div class="mdui-card-primary">
+        <div class="mdui-card-primary-title">Google AD</div>
+        <div class="mdui-card-primary-subtitle">由 Google 提供的广告</div>
+      </div>
+      <div class="mdui-card-content">
+        <ins
+          class="adsbygoogle"
+          style="display: block"
+          data-ad-client="ca-pub-5902069866611465"
+          data-ad-slot="7159903518"
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        >
+        </ins>
+      </div>
+    </div> -->
+    <footer class="mdui-text-center">
+      <p>
+        <a
+          href="./changelog.html"
+          style="font-weight: 400; text-decoration: none;color: blue;"
+          >更新日志</a
+        >&nbsp;&nbsp;·&nbsp;
+        <a
+          href="./how2use.html"
+          style="font-weight: 400; text-decoration: none;color: blue;"
+          >使用方法</a
+        >&nbsp;&nbsp;·&nbsp;
+        <a
+        href="javascript:localStorage.clear();mdui.alert('清除成功，请刷新页面。');"
+        style="font-weight: 400; text-decoration: none;color: blue;"
+        >清除缓存</a
+      >&nbsp;&nbsp;·&nbsp;
+        <a
+          href="javascript:about_project();"
+          style="font-weight: 400; text-decoration: none;color: blue;"
+          >关于工具</a
+        >
+      </p>
+
+      <p>© 2022 CKY</p>
+    </footer>
+    <script src="https://npm.elemecdn.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
+    <script src="./get.js"></script>
+    <script>
+      function about_project() {
+        mdui.alert(`本工具可以帮助你更快速的找到你适合的志愿项目。<br>
+        许多项目明确写出仅限组织内部成员，又或是距离太远。本工具可以屏蔽相应关键词，锁定城市和区域。<br>
+        本工具可能还存在许多不太完善的地方，欢迎反馈！
+        `, "关于 EasyIzyz")
+      }
+    </script>
+  </body>
+</html>
